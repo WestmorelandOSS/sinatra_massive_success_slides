@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dynamic Websites with Sinatra</title>
+    <meta name="description" content="">
+    <meta name="author" content="Paul Scarrone">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+    <link id="theme" rel="stylesheet" href="bower_components/reveal.js/css/theme/moon.css">
+    <!-- For syntax highlighting-->
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+    <script src="//localhost:35729/livereload.js"></script>
+    <script>var revealLocation = 'bower_components/reveal.js/'</script>
+    <!--if lt IE 9
+    script(src= revealLocation + 'lib/js/html5shiv.js')
+    
+    -->
+    <script>
+      document.write( '<link rel="stylesheet" href="' + revealLocation + 'css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+      if(window.location.search.match( /print-pdf/gi )){
+        document.write('<style>.reveal aside.notes{display:block;font-size:0.4em;}.reveal aside.notes:before{content: "Notes: ";font-weight: bold;}</style>');
+      }
+    </script>
+  </head>
+  <link rel="external" type="text/html" src="./shared/head.jade">
+  <body>
+    <div class="reveal">
+      <div class="slides">
+            <section>
+              <h1>Dynamic Websites with Sinatra</h1>
+              <h3>Massive Success</h3>
+              <p>
+                <div class="left"><small>Paul Scarrone</small></div>
+                <div class="left"><small class="twitter">@PaulSCoder</small></div>
+                <div class="left"><small class="email">paul.scarrone@gmail.com</small></div>
+              </p>
+              <aside class="notes">Title Slide</aside>
+            </section>
+            <section>
+              <h1>Objectives</h1><ul>
+<li>Ruby Language</li>
+<li>Sinatra</li>
+<li>Request Response Pattern</li>
+<li>RESTful Routes</li>
+<li>Data with datamapper</li>
+</ul>
+
+            </section>
+            <section>
+              <h1>Ruby</h1><p>A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.</p>
+
+            </section>
+            <section>
+              <h3>Some Ruby</h3><pre><code class="lang-ruby"># Variables
+a_variable = &#39;thing&#39;
+an_array = [&quot;First&quot;, &quot;Thing&quot;, &quot;To&quot;, &quot;Do&quot;]
+
+# Method
+def hello_world
+  puts &#39;Hello World&#39;
+end
+
+# Looping
+an_array.each do |item|
+  puts &quot;#{item} &quot;
+end
+</code></pre>
+
+            </section>
+            <section>
+              <h3>Some Sinatra</h3><h5 id="app-rb">app.rb</h5>
+<pre><code class="lang-ruby">require &#39;sinatra&#39;
+
+get &#39;/&#39; do
+  &quot;Hello World&quot;
+end
+</code></pre>
+
+            </section>
+            <section>
+              <h3>Getting a Sinatra Project Ready</h3><ul>
+<li>install bundler<ul>
+<li>$ gem install bundler</li>
+</ul>
+</li>
+<li>create a Gemfile</li>
+<li>bundling<ul>
+<li>$ bundle install</li>
+</ul>
+</li>
+<li>create an app.rb</li>
+<li>add some routes</li>
+<li>$ ruby app.rb</li>
+</ul>
+
+            </section>
+            <section>
+                  <section>
+                    <h1>Ruby</h1><ul>
+<li><a href="http://tryruby.org/levels/1/challenges/0">http://tryruby.org</a></li>
+<li>$ irb</li>
+</ul>
+
+                  </section>
+                  <section>
+                    <h1>Variables</h1><pre><code class="lang-ruby">a_variable = &#39;thing&#39;
+an_array = [&quot;First&quot;, &quot;Thing&quot;, &quot;To&quot;, &quot;Do&quot;]
+</code></pre>
+
+                  </section>
+                  <section>
+                    <h1>Methods</h1><pre><code class="lang-ruby">def do_something(argument)
+    argument
+end
+
+def sum(first_num, second_num)
+    first_num + second_num
+end
+</code></pre>
+
+                  </section>
+                  <section>
+                    <h1>Blocks</h1><pre><code class="lang-ruby">    (1..3).each do
+        puts &#39;hi&#39;
+    end
+
+    array = [5,4,3,2,1]
+    array.each { |num| puts num }
+</code></pre>
+
+                  </section>
+            </section>
+            <section>
+                  <section>
+                    <h1>Sinatra</h1><p>A DSL for quickly creating web applications in Ruby with minimal effort.</p>
+
+                  </section>
+                  <section>
+                    <h1>Sample Sinatra App</h1><h5 id="app-rb">app.rb</h5>
+<pre><code class="lang-ruby">require &#39;sinatra&#39;
+
+get &#39;/&#39; do
+  &quot;Hello World&quot;
+end
+</code></pre>
+
+                  </section>
+                  <section>
+                    <h1>A Sinatra Project</h1><ol>
+<li>Make a folder - _sinatra<em>app</em></li>
+<li>Change to that directory - _cd sinatra<em>app</em></li>
+<li>Create file named - <em>Gemfile</em></li>
+</ol>
+
+                  </section>
+                  <section>
+                    <h1>The Gemfile</h1><h5 id="gemfile">Gemfile</h5>
+<pre><code class="lang-ruby">source &quot;https://rubygems.org&quot;
+
+gem &#39;sinatra&#39;
+gem &#39;haml&#39;
+</code></pre>
+
+                  </section>
+                  <section>
+                    <h1>$ bundle install</h1>
+                  </section>
+                  <section>
+                    <h1>Create app.rb</h1><h5 id="app-rb">app.rb</h5>
+<pre><code class="lang-ruby">require &#39;sinatra&#39;
+
+get &#39;/&#39; do
+  &quot;Hello World&quot;
+end
+</code></pre>
+
+                  </section>
+                  <section>
+                    <h1>Run your app</h1><ul>
+<li>$ ruby app.rb</li>
+<li>go to <a href="http://localhost:3000">http://localhost:3000</a></li>
+</ul>
+
+                  </section>
+            </section>
+            <section>
+                  <section>
+                    <h1>Views</h1><p>We will use haml again because it is convenient.</p>
+<ol>
+<li>Lets make a <em>views</em> folder in our project</li>
+<li>Create a view called <em>index.haml</em></li>
+</ol>
+
+                  </section>
+                  <section>
+                    <h1>index.haml</h1><pre><code class="lang-haml">    %h1 Hello Sinatra
+    %p By Paul Scarrone
+</code></pre>
+
+                  </section>
+                  <section>
+                    <h1>Use it in our app</h1><pre><code class="lang-ruby">    require &#39;sinatra&#39;
+
+    get &#39;/&#39; do
+      haml &#39;views/index.haml&#39;
+    end
+</code></pre>
+
+                  </section>
+            </section>
+            <section>
+                  <section>
+                    <h1>Request Response</h1>
+                  </section>
+            </section>
+      </div>
+    </div>
+    <script type="text/javascript" src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script type="text/javascript" src="bower_components/reveal.js/js/reveal.js"></script>
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+       Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: 'moon',
+        slideNumber: true,
+        transition: 'concave',
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: revealLocation + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: revealLocation + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: revealLocation + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: revealLocation + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: revealLocation + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+       });
+    </script>
+  </body>
+</html>
