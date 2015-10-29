@@ -1,0 +1,103 @@
+- var revealLocation = 'bower_components/reveal.js/'
+- var titleData = { title: "Dynamic Websites with Sinatra", subtitle: "Massive Success", author: "Paul Scarrone", twitter: "@PaulSCoder", email: "paul.scarrone@gmail.com" }
+doctype html
+html(lang="en")
+
+  include ./shared/slide_mixins
+
+  include ./shared/head
+
+  link(rel='external' type='text/html' src="./shared/head.jade")
+
+  body
+    .reveal
+      .slides
+        +titleSlide(titleData)
+        +bigTitleSlide("Objectives")
+          :markdown
+            - Ruby Language
+            - Sinatra
+            - Request Response Pattern
+            - RESTful Routes
+            - Data with datamapper
+
+        +bigTitleSlide("Ruby")
+          :markdown
+            A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
+
+        +littleTitleSlide("Some Ruby")
+          include:markdown code/simple_ruby.md
+
+        +littleTitleSlide("Some Sinatra")
+          include:markdown code/simple_sinatra.md
+
+        +littleTitleSlide("Getting a Sinatra Project Ready")
+          :markdown
+            - install bundler
+              - $ gem install bundler
+            - create a Gemfile
+            - bundling
+              - $ bundle install
+            - create an app.rb
+            - add some routes
+            - $ ruby app.rb
+
+        +slideGroup
+          +bigTitleSlide("Ruby")
+            :markdown
+              - [http://tryruby.org](http://tryruby.org/levels/1/challenges/0)
+              - $ irb
+
+          +bigTitleSlide("Variables")
+            include:markdown code/ruby_variables.md
+
+          +bigTitleSlide("Methods")
+            include:markdown code/ruby_methods.md
+
+          +bigTitleSlide("Blocks")
+            include:markdown code/ruby_blocks.md
+
+        +slideGroup
+          +bigTitleSlide("Sinatra")
+            :markdown
+              A DSL for quickly creating web applications in Ruby with minimal effort.
+
+          +bigTitleSlide("Sample Sinatra App")
+            include:markdown code/simple_sinatra.md
+
+          +bigTitleSlide("A Sinatra Project")
+            :markdown
+              1. Make a folder - _sinatra_app_
+              2. Change to that directory - _cd sinatra_app_
+              3. Create file named - _Gemfile_
+
+          +bigTitleSlide("The Gemfile")
+            include:markdown code/sinatra_gemfile.md
+
+          +bigTitleSlide("$ bundle install")
+
+          +bigTitleSlide("Create app.rb")
+            include:markdown code/simple_sinatra.md
+
+          +bigTitleSlide("Run your app")
+            :markdown
+              - $ ruby app.rb
+              - go to http://localhost:3000
+
+        +slideGroup
+          +bigTitleSlide("Views")
+            :markdown
+              We will use haml again because it is convenient.
+              1. Lets make a _views_ folder in our project
+              2. Create a view called _index.haml_
+
+          +bigTitleSlide("index.haml")
+            include:markdown code/sinatra_index_haml.md
+
+          +bigTitleSlide("Use it in our app")
+            include:markdown code/sinatra_update_index_with_haml.md
+
+        +slideGroup
+          +bigTitleSlide("Request Response")
+
+    include ./shared/footer
